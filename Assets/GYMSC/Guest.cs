@@ -11,8 +11,6 @@ public class Guest : MonoBehaviour
     public Equipment Target;
     public Equipment PreTarget;
     public Equipment UsingEquipment;
-    Vector3 prevPos;
-
     
     //테스트용입니다.
     private void Update()
@@ -24,6 +22,10 @@ public class Guest : MonoBehaviour
     }
     private void Start()
     {
+        if(GuestManager.s_instance!=null)
+        {
+            GuestManager.GuestCount += 1;
+        }
         StartCoroutine(CheckRoutine(2));
     }
 

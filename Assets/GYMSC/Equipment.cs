@@ -29,6 +29,10 @@ public class Equipment : MonoBehaviour
         }
     }
 
+    public void Use()
+    {
+        Count += 1;
+    }
    void Start()
     {
         if(EquipmentManager.s_instance!=null)
