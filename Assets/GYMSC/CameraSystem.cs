@@ -31,7 +31,7 @@ public class CameraSystem : MonoBehaviour
 
             }
             CameraMove();
-            MainCam.transform.localRotation = Quaternion.Euler(MainCam.transform.localRotation.x, MainCam.transform.localRotation.y-90, MainCam.transform.localRotation.z);
+         
         }
          if(Input.GetKeyDown(KeyCode.E))
         {
@@ -51,15 +51,14 @@ public class CameraSystem : MonoBehaviour
 
             }
             CameraMove();
-            MainCam.transform.localRotation = Quaternion.Euler(MainCam.transform.localRotation.x, MainCam.transform.localRotation.y+90, MainCam.transform.localRotation.z);
+                    
         }
 
     }
     public void CameraMove()
     {
         MainCam.transform.position = CurrnetPos.transform.position;
-      
-
+        MainCam.transform.rotation = CurrnetPos.transform.rotation;
     }
     public int IndexReturner()
     {
