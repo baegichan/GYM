@@ -60,12 +60,12 @@ public class EquipmentManager : MonoBehaviour
     }
     public void UpdateLists()
     {
-        if (s_instance.EquipsList.Count != 0)
+        if (s_instance.EquipsP.Count != 0)
         {
 
             Useble.Clear();
             UnUseble.Clear();
-            foreach (Equipment i in EquipsList)
+            foreach (Equipment i in EquipsP)
             {
                 if (i.UsingPermission() == true)
                 {
@@ -83,10 +83,10 @@ public class EquipmentManager : MonoBehaviour
 
     public bool CheckEquipments()
     {
-        if (s_instance.EquipsList.Count != 0)
+        if (s_instance.EquipsP.Count != 0)
         {
             int Usingcount = 0;
-            foreach (Equipment i in EquipsList)
+            foreach (Equipment i in EquipsP)
             {
                 if (i.UsingPermission() != true)
                 {
@@ -97,7 +97,7 @@ public class EquipmentManager : MonoBehaviour
                     return true;
                 }
             }
-            if(Usingcount == s_instance.EquipsList.Count)
+            if(Usingcount == s_instance.EquipsP.Count)
             {
                 return false;
             }

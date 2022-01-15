@@ -6,6 +6,12 @@ public class CameraSystem : MonoBehaviour
 {
     public CameraSetting[] CameraPos;
     public CameraSetting CurrnetPos;
+    private float Current_Zoom_size = 5;
+    public Transform View_Target;
+    public Transform Sensor;
+    public float Zoom_Scale = 10;
+    public float Zoom_MaxSize = 5;
+    public float Zoom_MinSize = 1;
     Camera MainCam;
     private void Awake()
     {
@@ -14,6 +20,7 @@ public class CameraSystem : MonoBehaviour
     }
     private void Update()
     {
+       
          if(Input.GetKeyDown(KeyCode.Q))
         {
             int Index = IndexReturner();
@@ -53,12 +60,37 @@ public class CameraSystem : MonoBehaviour
             CameraMove();
                     
         }
+        if(Input.GetKey(KeyCode.W))
+        {
+            this.transform.position += Sensor.transform.forward * +0.01f;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            this.transform.position += Sensor.transform.forward * -0.01f;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            this.transform.position += MainCam.transform.right * -0.01f;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            this.transform.position += MainCam.transform.right * 0.01f;
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {     
+            MainCam.orthographicSize = Mathf.Clamp(Current_Zoom_size-=Time.deltaTime* Zoom_Scale, Zoom_MinSize, Zoom_MaxSize);
 
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            MainCam.orthographicSize = Mathf.Clamp(Current_Zoom_size += Time.deltaTime * Zoom_Scale, Zoom_MinSize, Zoom_MaxSize);
+        }
+        MainCam.transform.LookAt(View_Target);
     }
     public void CameraMove()
     {
         MainCam.transform.position = CurrnetPos.transform.position;
-        MainCam.transform.rotation = CurrnetPos.transform.rotation;
+      //  MainCam.transform.rotation = CurrnetPos.transform.rotation;
     }
     public int IndexReturner()
     {
