@@ -64,11 +64,13 @@ public class CameraSystem : MonoBehaviour
         }
         if(Input.GetKey(KeyCode.W))
         {
-            this.transform.position += Sensor.transform.forward * +0.01f* Speed;
+            this.transform.position += Sensor.transform.forward * +0.01f * Speed;
+            this.transform.position = new Vector3 (transform.position.x,45,transform.position.z);
         }
         if (Input.GetKey(KeyCode.S))
         {
             this.transform.position += Sensor.transform.forward * -0.01f * Speed;
+            this.transform.position = new Vector3(transform.position.x, 45, transform.position.z);
         }
         if (Input.GetKey(KeyCode.A))
         {

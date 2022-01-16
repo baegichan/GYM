@@ -34,9 +34,13 @@ public class Guest : MonoBehaviour
         {
             if (Target != null)
             {
-                // Agent.SetDestination(Target.transform.position);
+                 Agent.SetDestination(Target.transform.position);
             }
         }
+    }
+    private void OnEnable()
+    {
+        StartCoroutine(CheckRoutine(1));
     }
     private void Start()
     {
@@ -71,7 +75,7 @@ public class Guest : MonoBehaviour
     private void Awake()
     {
         Ani = GetComponent<Animator>();
-        material = GetComponent<Renderer>().material;
+      //  material = GetComponent<Renderer>().material;
     }
     private void SetStep()
     {
@@ -114,10 +118,18 @@ public class Guest : MonoBehaviour
         }
     }
     //use collisionenter
-
-    private void OnTriggerEnter(Collider other)
+    private void CollisionStay(Collision collision)
     {
-        if(other.GetComponent<Equipment>()!=null&&other.gameObject==Target)
+        Debug.Log(collision.gameObject.name + " coll");
+        if (collision.gameObject.GetComponent<Equipment>() != null && collision.gameObject.GetComponent<Equipment>() == Target)
+        {
+            EquipmentUse(collision.gameObject.GetComponent<Equipment>());
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        Debug.Log(other.name);
+        if(other.GetComponent<Equipment>()!=null&&other.GetComponent<Equipment>() == Target)
         {
             EquipmentUse(other.GetComponent<Equipment>());
         }
@@ -125,6 +137,7 @@ public class Guest : MonoBehaviour
     public void EquipmentUse(Equipment Target)
     {
         Target.Use(this);
+        gameObject.SetActive(false);
         switch (Target.equipment_type)
         {
             case Equipment.Equipments.Dumbbel:
@@ -136,10 +149,21 @@ public class Guest : MonoBehaviour
 
                 break;
 
+            case Equipment.Equipments.smith:
+                //Animation
+
+                break;
+
         }
     }
-
-
+    public void ActiveOn()
+    {
+        gameObject.SetActive(true);
+    }
+    public void ActiveOff()
+    {
+        gameObject.SetActive(false);
+    }
     #region animation Event
     public void SetRandomLoop()
     {
