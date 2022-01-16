@@ -52,11 +52,20 @@ public class Equipment : MonoBehaviour
         UsingGuest = guest;
         if(UsingGuest.Guest_Gender == Guest.Gender.M)
         {
+            if (GetComponent<MeshChanger>() != null)
+            {
+                GetComponent<MeshChanger>().Change(UsingGuest.Guest_Gender);
+            }
             ani.SetBool("Gender", true);
             ani.SetBool("Use", true);
+         
         }
         else
         {
+            if (GetComponent<MeshChanger>() != null)
+            {
+                GetComponent<MeshChanger>().Change(UsingGuest.Guest_Gender);
+            }
             ani.SetBool("Gender", false);
             ani.SetBool("Use", true);
         }

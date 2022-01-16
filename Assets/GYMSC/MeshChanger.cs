@@ -7,11 +7,14 @@ public class MeshChanger : MonoBehaviour
     //listMatching
     public List<Mesh> Man;
     public List<Mesh> Women;
-
     public List<Mesh> CurrentMesh;
 
+    
+    public Material ManMaterial;
+    public Material WomenMaterial;
+
     public Guest.Gender gender;
-    public void ChangeWomen(Guest.Gender Targetgender)
+    public void Change(Guest.Gender Targetgender)
     {
         switch(Targetgender)
         {
