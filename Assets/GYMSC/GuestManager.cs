@@ -8,6 +8,7 @@ public class GuestManager : MonoBehaviour
     public static GuestManager s_instance;
     public static int GuestCount = 0;
     public GameObject[] GuerstPrefab;
+   
     void instance()
     {
         if(s_instance==null)

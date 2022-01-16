@@ -13,7 +13,15 @@ public class Guest : MonoBehaviour
     public Equipment PreTarget;
     public Equipment UsingEquipment;
 
+    public enum Gender
+    {
+        M,
+        W
+    }
+    public Gender Guest_Gender;
 
+
+    bool Stop = false;
     private Animator Ani;
     private int LoopCount = 0;
     private float View = 1;
@@ -22,9 +30,12 @@ public class Guest : MonoBehaviour
     //테스트용입니다.
     private void Update()
     {
-        if (Target != null)
+        if(Stop ==false)
         {
-           // Agent.SetDestination(Target.transform.position);
+            if (Target != null)
+            {
+                // Agent.SetDestination(Target.transform.position);
+            }
         }
     }
     private void Start()
@@ -150,7 +161,18 @@ public class Guest : MonoBehaviour
         //Animation
 
     }
-
+    private void AnimationUpdate()
+    {
+        switch(GuestState.CurrentAction)
+        {
+            case GuestState.Action.Moving:
+                break;
+            case GuestState.Action.Stopping:
+                break;
+            case GuestState.Action.UsingEquipment:
+                break;
+        }
+    }
 }
 
 

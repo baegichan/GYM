@@ -8,13 +8,28 @@ public class Equipment : MonoBehaviour
 {
     public bool Using;
     public Guest UsingGuest=null;
+    public int LoopCount = 0;
+
+
+    bool pre_gender = false;
+    bool current_gender = false;
+
+
+    public Animator ani;
+    private void Awake()
+    {
+        if(GetComponent<Animator>()!=null)
+        {
+            ani = GetComponent<Animator>();
+        }
+    }
     public enum Equipments
     {
         None,
         Running,
         Dumbbel,
     }
-
+    
     //언젠가 사용할거같은 미래를 위해 남겨둠
     int Count = 0;
 
@@ -35,6 +50,17 @@ public class Equipment : MonoBehaviour
     public void Use(Guest guest)
     {
         UsingGuest = guest;
+        if(UsingGuest.Guest_Gender == Guest.Gender.M)
+        {
+            ani.SetBool("Gender", true);
+            ani.SetBool("Use", true);
+        }
+        else
+        {
+            ani.SetBool("Gender", false);
+            ani.SetBool("Use", true);
+        }
+        
         Count += 1;
         Using = true;
     }
@@ -42,8 +68,35 @@ public class Equipment : MonoBehaviour
     {
         UsingGuest = null;
         Using = false;
+        ani.SetBool("Gender", false);
+        ani.SetBool("Use", false);
     }
-   void Start()
+    #region animation Event
+    public void SetRandomLoop()
+    {
+        LoopCount = Random.Range(5, 10);
+    }
+    public void UpCount()
+    {
+        ani.SetInteger("LoopCount", ani.GetInteger("LoopCount") + 1);
+    }
+    public void ClearLoop()
+    {
+        ani.SetInteger("LoopCount", 0);
+        LoopCount = 0;
+    }
+    #endregion
+
+    public void Gender_check()
+    {
+        if(pre_gender != current_gender)
+        {
+            
+
+        }
+
+    }
+    void Start()
     {
         if(EquipmentManager.s_instance!=null)
         {
