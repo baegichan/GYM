@@ -12,8 +12,13 @@ public class Guest : MonoBehaviour
     public Equipment Target;
     public Equipment PreTarget;
     public Equipment UsingEquipment;
+
+
+    private Animator Ani;
+    private int LoopCount = 0;
     private float View = 1;
     public Material material;
+    Vector3 Preposition = new Vector3(0,0,0);
     //테스트용입니다.
     private void Update()
     {
@@ -46,7 +51,7 @@ public class Guest : MonoBehaviour
         }
         else
         {
-            if(Target.Using)
+            if(Target.Using && Target.UsingGuest!=this)
             {
              Target = null;
             }
@@ -54,6 +59,7 @@ public class Guest : MonoBehaviour
     }
     private void Awake()
     {
+        Ani = GetComponent<Animator>();
         material = GetComponent<Renderer>().material;
     }
     private void SetStep()
@@ -97,9 +103,17 @@ public class Guest : MonoBehaviour
         }
     }
     //use collisionenter
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetComponent<Equipment>()!=null&&other.gameObject==Target)
+        {
+            EquipmentUse(other.GetComponent<Equipment>());
+        }
+    }
     public void EquipmentUse(Equipment Target)
     {
-        Target.Use();
+        Target.Use(this);
         switch (Target.equipment_type)
         {
             case Equipment.Equipments.Dumbbel:
@@ -114,6 +128,28 @@ public class Guest : MonoBehaviour
         }
     }
 
+
+    #region animation Event
+    public void SetRandomLoop()
+    {
+        LoopCount = Random.Range(5, 10);
+    }
+    public void UpCount()
+    {
+        Ani.SetInteger("LoopCount", Ani.GetInteger("LoopCount")+1);
+    }
+    public void ClearLoop()
+    {
+        Ani.SetInteger("LoopCount", 0);
+        LoopCount = 0;
+    }
+    #endregion
+    public void EndUsing(Equipment Target)
+    {
+        Target.UnUse();
+        //Animation
+
+    }
 
 }
 

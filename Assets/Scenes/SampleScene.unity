@@ -596,6 +596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Using: 0
+  UsingGuest: {fileID: 0}
   equipment_type: 2
 --- !u!1001 &814379129
 PrefabInstance:
@@ -845,6 +846,7 @@ MonoBehaviour:
   Target: {fileID: 0}
   PreTarget: {fileID: 0}
   UsingEquipment: {fileID: 0}
+  material: {fileID: 0}
 --- !u!114 &1011636397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -857,7 +859,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c409ec0c2dc697c49b9483e533faaf66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 0}
 --- !u!1001 &1082465193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1066,6 +1067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Using: 0
+  UsingGuest: {fileID: 0}
   equipment_type: 2
 --- !u!1 &1469496749 stripped
 GameObject:
@@ -1085,6 +1087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Using: 0
+  UsingGuest: {fileID: 0}
   equipment_type: 2
 --- !u!1001 &1624710000
 PrefabInstance:
@@ -1358,7 +1361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c409ec0c2dc697c49b9483e533faaf66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 0}
 --- !u!195 &1903040063
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1401,6 +1403,7 @@ MonoBehaviour:
   Target: {fileID: 0}
   PreTarget: {fileID: 0}
   UsingEquipment: {fileID: 0}
+  material: {fileID: 0}
 --- !u!135 &1903040065
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1540,6 +1543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Using: 0
+  UsingGuest: {fileID: 0}
   equipment_type: 2
 --- !u!1001 &1969903037
 PrefabInstance:
@@ -1636,6 +1640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Using: 0
+  UsingGuest: {fileID: 0}
   equipment_type: 1
 --- !u!1 &2138677391
 GameObject:
@@ -1762,6 +1767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Using: 0
+  UsingGuest: {fileID: 0}
   equipment_type: 2
 --- !u!1 &919132148350410807
 GameObject:
@@ -1828,6 +1834,7 @@ MonoBehaviour:
   Target: {fileID: 0}
   PreTarget: {fileID: 0}
   UsingEquipment: {fileID: 0}
+  material: {fileID: 0}
 --- !u!114 &919132148350410810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1840,7 +1847,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c409ec0c2dc697c49b9483e533faaf66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 0}
 --- !u!23 &1711813854293311970
 MeshRenderer:
   m_ObjectHideFlags: 0
