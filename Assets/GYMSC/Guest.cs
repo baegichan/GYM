@@ -34,7 +34,7 @@ public class Guest : MonoBehaviour
         {
             if (Target != null)
             {
-                // Agent.SetDestination(Target.transform.position);
+                 Agent.SetDestination(Target.transform.position);
             }
         }
     }
@@ -71,7 +71,7 @@ public class Guest : MonoBehaviour
     private void Awake()
     {
         Ani = GetComponent<Animator>();
-        material = GetComponent<Renderer>().material;
+      //  material = GetComponent<Renderer>().material;
     }
     private void SetStep()
     {
