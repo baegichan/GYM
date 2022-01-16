@@ -12,11 +12,13 @@ public class CameraSystem : MonoBehaviour
     public float Zoom_Scale = 10;
     public float Zoom_MaxSize = 5;
     public float Zoom_MinSize = 1;
+    public float Speed = 5;
     Camera MainCam;
     private void Awake()
     {
         MainCam = Camera.main;
         CurrnetPos = CameraPos[0];
+        Current_Zoom_size = Zoom_MaxSize;
     }
     private void Update()
     {
@@ -62,19 +64,19 @@ public class CameraSystem : MonoBehaviour
         }
         if(Input.GetKey(KeyCode.W))
         {
-            this.transform.position += Sensor.transform.forward * +0.01f;
+            this.transform.position += Sensor.transform.forward * +0.01f* Speed;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            this.transform.position += Sensor.transform.forward * -0.01f;
+            this.transform.position += Sensor.transform.forward * -0.01f * Speed;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            this.transform.position += MainCam.transform.right * -0.01f;
+            this.transform.position += MainCam.transform.right * -0.01f * Speed;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            this.transform.position += MainCam.transform.right * 0.01f;
+            this.transform.position += MainCam.transform.right * 0.01f * Speed;
         }
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {     
