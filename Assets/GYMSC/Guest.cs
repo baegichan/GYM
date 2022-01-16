@@ -19,7 +19,7 @@ public class Guest : MonoBehaviour
     {
         if (Target != null)
         {
-            Agent.SetDestination(Target.transform.position);
+           // Agent.SetDestination(Target.transform.position);
         }
     }
     private void Start()
