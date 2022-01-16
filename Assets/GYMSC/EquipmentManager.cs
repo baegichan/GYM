@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// 누가 코드 수정할지 모르겠지만 UnUseble  Useble갱신 오류있음
+/// </summary>
 public class EquipmentManager : MonoBehaviour
 {
     // Start is called before the first frame update

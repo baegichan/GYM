@@ -18,13 +18,7 @@ public class Equipment : MonoBehaviour
 
 
     public Animator ani;
-    private void Awake()
-    {
-        if(GetComponent<Animator>()!=null)
-        {
-            ani = GetComponent<Animator>();
-        }
-    }
+  
     public enum Equipments
     {
         None,
@@ -98,7 +92,7 @@ public class Equipment : MonoBehaviour
     #region animation Event
     public void SetRandomLoop()
     {
-        LoopCount = Random.Range(5, 10);
+        LoopCount = Random.Range(10, 16);
     }
     public void UpCount()
     {
@@ -118,6 +112,7 @@ public class Equipment : MonoBehaviour
             ani.SetTrigger("Escape");
 
             UnUse();
+            EquipmentManager.s_instance.UpdateLists();
         }
     }
     #endregion

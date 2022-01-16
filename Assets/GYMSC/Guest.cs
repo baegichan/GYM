@@ -68,7 +68,7 @@ public class Guest : MonoBehaviour
         {
             if(Target.Using && Target.UsingGuest!=this)
             {
-             Target = null;
+              Target = null;
             }
         }
     }
