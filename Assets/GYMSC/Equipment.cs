@@ -9,6 +9,8 @@ public class Equipment : MonoBehaviour
     public bool Using;
     public Guest UsingGuest=null;
     public int LoopCount = 0;
+    private int AniLoopCount = 0;
+    public GameObject GuestOBJ;
 
 
     bool pre_gender = false;
@@ -28,6 +30,8 @@ public class Equipment : MonoBehaviour
         None,
         Running,
         Dumbbel,
+        smith,
+
     }
     
     //언젠가 사용할거같은 미래를 위해 남겨둠
@@ -50,24 +54,31 @@ public class Equipment : MonoBehaviour
     public void Use(Guest guest)
     {
         UsingGuest = guest;
-        if(UsingGuest.Guest_Gender == Guest.Gender.M)
+        UsingGuest.ActiveOff();
+        GuestOBJ.SetActive(true);
+        SetRandomLoop();
+        ani.SetTrigger("Start");
+        if (UsingGuest.Guest_Gender == Guest.Gender.M)
         {
+            /*
             if (GetComponent<MeshChanger>() != null)
             {
                 GetComponent<MeshChanger>().Change(UsingGuest.Guest_Gender);
             }
             ani.SetBool("Gender", true);
             ani.SetBool("Use", true);
-         
+         */
         }
         else
         {
+            /*
             if (GetComponent<MeshChanger>() != null)
             {
                 GetComponent<MeshChanger>().Change(UsingGuest.Guest_Gender);
             }
             ani.SetBool("Gender", false);
             ani.SetBool("Use", true);
+            */
         }
         
         Count += 1;
@@ -75,10 +86,14 @@ public class Equipment : MonoBehaviour
     }
     public void UnUse()
     {
+        UsingGuest.ActiveOn();
+        UsingGuest.Target = null;
         UsingGuest = null;
         Using = false;
-        ani.SetBool("Gender", false);
-        ani.SetBool("Use", false);
+        GuestOBJ.SetActive(false);
+        ClearLoop();
+        //ani.SetBool("Gender", false);
+        //ani.SetBool("Use", false);
     }
     #region animation Event
     public void SetRandomLoop()
@@ -87,12 +102,23 @@ public class Equipment : MonoBehaviour
     }
     public void UpCount()
     {
-        ani.SetInteger("LoopCount", ani.GetInteger("LoopCount") + 1);
+        AniLoopCount += 1;
     }
     public void ClearLoop()
     {
         ani.SetInteger("LoopCount", 0);
         LoopCount = 0;
+        AniLoopCount = 0;
+    }
+    public void Check()
+    {
+        if(AniLoopCount == LoopCount)
+        {
+
+            ani.SetTrigger("Escape");
+
+            UnUse();
+        }
     }
     #endregion
 
