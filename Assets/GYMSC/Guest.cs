@@ -62,7 +62,11 @@ public class Guest : MonoBehaviour
     {
         if (Target == null)
         {
-            Target = EquipmentManager.s_instance.TryGetRandomEquip();
+          if(EquipmentManager.s_instance!=null)
+             {
+                Target = EquipmentManager.s_instance.TryGetRandomEquip();
+            }
+          
         }
         else
         {
@@ -118,20 +122,17 @@ public class Guest : MonoBehaviour
         }
     }
     //use collisionenter
-    private void CollisionStay(Collision collision)
-    {
-        Debug.Log(collision.gameObject.name + " coll");
-        if (collision.gameObject.GetComponent<Equipment>() != null && collision.gameObject.GetComponent<Equipment>() == Target)
-        {
-            EquipmentUse(collision.gameObject.GetComponent<Equipment>());
-        }
-    }
+   
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log(other.name);
+
         if(other.GetComponent<Equipment>()!=null&&other.GetComponent<Equipment>() == Target)
         {
-            EquipmentUse(other.GetComponent<Equipment>());
+        if(other.GetComponent<Equipment>().Using != true)
+        {
+                EquipmentUse(other.GetComponent<Equipment>());
+            }
+           
         }
     }
     public void EquipmentUse(Equipment Target)
