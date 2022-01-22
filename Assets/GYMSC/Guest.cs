@@ -7,10 +7,9 @@ using UnityEngine.AI;
 public class Guest : MonoBehaviour
 {
   
-    public GuestState GuestState = new GuestState();
+
     public NavMeshAgent Agent;
     public Equipment Target;
-    public Equipment PreTarget;
     public Equipment UsingEquipment;
 
     public enum Gender
@@ -26,8 +25,7 @@ public class Guest : MonoBehaviour
     private int LoopCount = 0;
     private float View = 1;
     public Material material;
-    Vector3 Preposition = new Vector3(0,0,0);
-    //테스트용입니다.
+ 
     private void Update()
     {
         if(Stop ==false)
@@ -44,7 +42,7 @@ public class Guest : MonoBehaviour
     }
     private void Start()
     {
-        //StartCoroutine(ViewOff());
+  
         if (GuestManager.s_instance!=null)
         {
             GuestManager.GuestCount += 1;
@@ -64,7 +62,7 @@ public class Guest : MonoBehaviour
         {
           if(EquipmentManager.s_instance!=null)
              {
-                Target = EquipmentManager.s_instance.TryGetRandomEquip();
+                Target = EquipmentManager.s_instance.TryGetRandomEquip(Guest_Gender);
             }
           
         }
@@ -139,23 +137,7 @@ public class Guest : MonoBehaviour
     {
         Target.Use(this);
         gameObject.SetActive(false);
-        switch (Target.equipment_type)
-        {
-            case Equipment.Equipments.Dumbbel:
-                //Animation
-
-                break;
-            case Equipment.Equipments.Running:
-                //Animation
-
-                break;
-
-            case Equipment.Equipments.smith:
-                //Animation
-
-                break;
-
-        }
+      
     }
     public void ActiveOn()
     {
@@ -185,38 +167,5 @@ public class Guest : MonoBehaviour
         Target.UnUse();
         //Animation
 
-    }
-    private void AnimationUpdate()
-    {
-        switch(GuestState.CurrentAction)
-        {
-            case GuestState.Action.Moving:
-                break;
-            case GuestState.Action.Stopping:
-                break;
-            case GuestState.Action.UsingEquipment:
-                break;
-        }
-    }
-}
-
-
-[System.Serializable]
-public class GuestState
-{
-    public enum Action
-    { 
-    None,
-    Moving,
-    UsingEquipment,
-    Stopping
-    }
-    public int id = 0;
-    public bool Act;
-    public Action CurrentAction;
-    public GuestState()
-    {
-        Act= false;
-        CurrentAction = Action.None;
     }
 }

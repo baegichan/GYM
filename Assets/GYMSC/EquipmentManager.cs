@@ -11,12 +11,11 @@ public class EquipmentManager : MonoBehaviour
 
 
     public List<Equipment> EquipsList = new List<Equipment>();
+     List<Equipment> Man_Useble = new List<Equipment>();
+    List<Equipment> Women_Useble = new List<Equipment>();
+    List<Equipment> UnUseble = new List<Equipment>();
 
-
-     List<Equipment> Useble = new List<Equipment>();
-     List<Equipment> UnUseble = new List<Equipment>();
-
-
+    
     public List<Equipment> EquipsP
     {
         get {
@@ -41,23 +40,37 @@ public class EquipmentManager : MonoBehaviour
     }
 
 
-    public void SetEquipment(Equipment.Equipments equipment, Equipment.Equipments TargetEquipment)
-    {
-        equipment = TargetEquipment;
-    }
-    public Equipment TryGetRandomEquip()
+    
+    public Equipment TryGetRandomEquip(Guest.Gender GuestGender)
     {
         UpdateLists();
-        if (Useble.Count != 0)
-        {
-            return Useble[Random.Range(0, Useble.Count)];
-        }
-        else
-        {
 
-            Debug.Log("사용가능한 기구 없음");
-            return null;
+        switch (GuestGender)
+        {
+            case Guest.Gender.M:
+                if (Man_Useble.Count != 0)
+                {
+                    return Man_Useble[Random.Range(0, Man_Useble.Count)];
+                }
+                else
+                {
+
+                    return null;
+                }
+               
+            case Guest.Gender.W:
+                if (Women_Useble.Count != 0)
+                {
+                    return Women_Useble[Random.Range(0, Women_Useble.Count)];
+                }
+                else
+                {        
+                    return null;
+                }
+        
         }
+
+        return null;
 
     }
     public void UpdateLists()
@@ -65,14 +78,28 @@ public class EquipmentManager : MonoBehaviour
         if (s_instance.EquipsP.Count != 0)
         {
 
-            Useble.Clear();
+            Man_Useble.Clear();
+            Women_Useble.Clear();
             UnUseble.Clear();
             foreach (Equipment i in EquipsP)
             {
                 if (i.UsingPermission() == true)
                 {
-
-                    Useble.Add(i);
+                    if(i.target_gender==Equipment.TargetGender.M)
+                    {
+                        Man_Useble.Add(i);
+                    }
+                    else if(i.target_gender == Equipment.TargetGender.W)
+                    {
+                        Women_Useble.Add(i);
+                    }
+                    else
+                    {
+                        //both
+                        Man_Useble.Add(i);
+                        Women_Useble.Add(i);
+                    }
+                    
                 }
                 else
                 {
